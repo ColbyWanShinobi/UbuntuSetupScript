@@ -15,7 +15,7 @@ sudo apt update
 sudo apt upgrade -y
 
 #Install my prereqs
-sudo apt install -y apt-transport-https curl gdebi-core timeshift make git jq gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted
+sudo apt install -y apt-transport-https curl gdebi-core timeshift make git jq gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat
 
 #TODO Install Timeshift APT (ONLY IF ROOT IS BTRFS)
 if [ `stat --format=%i /` -eq 256 ];then
@@ -29,6 +29,7 @@ fi
 
 #Install Dropbox
 if [ ! -x "$(command -v dropbox)" ];then
+  #sudo apt-key export 5044912E | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/dropbox.gpg
   wget https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb -O ${HOME}/Downloads/dropbox.deb
   yes | sudo gdebi ${HOME}/Downloads/dropbox.deb
 fi
@@ -46,10 +47,10 @@ if [ ! -x "$(command -v obs)" ];then
 fi
 
 #WebP Support
-#if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
-#  wget https://launchpad.net/ubuntu/+source/webp-pixbuf-loader/0.0.5-5/+build/24125572/+files/webp-pixbuf-loader_0.0.5-5_amd64.deb -O ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
-#  yes | sudo gdebi ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
-#fi
+if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
+  wget https://launchpad.net/ubuntu/+source/webp-pixbuf-loader/0.0.5-5/+build/24125572/+files/webp-pixbuf-loader_0.0.5-5_amd64.deb -O ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
+  yes | sudo gdebi ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
+fi
 
 #Replace PulseAudio with PipeWire
 #sudo apt install -y pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack wireplumber libpipewire-0.3-dev
@@ -60,12 +61,12 @@ echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select tr
 sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) apfs-dkms apfsprogs python-is-python3 jq mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer
 
 #Install Spotify
-if [ ! -f "/etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg" ]; then
-  curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg
-fi
-if [ ! -f "/etc/apt/sources.list.d/spotify.list" ]; then
-  echo "deb [signed-by=/etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg arch=amd64] http://repository.spotify.com stable non-free"| sudo tee /etc/apt/sources.list.d/spotify.list
-fi
+#if [ ! -f "/etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg" ]; then
+#  curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg
+#fi
+#if [ ! -f "/etc/apt/sources.list.d/spotify.list" ]; then
+#  echo "deb [signed-by=/etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg arch=amd64] http://repository.spotify.com stable non-free"| sudo tee /etc/apt/sources.list.d/spotify.list
+#fi
 
 #Install Wine
 if [ ! -f "/etc/apt/trusted.gpg.d/repository-winehq-keyring.gpg" ]; then

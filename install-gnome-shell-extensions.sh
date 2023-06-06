@@ -35,5 +35,6 @@ if [ ${XDG_CURRENT_DESKTOP} == "ubuntu:GNOME" ];then
     gnome-extensions enable ${EXTENSION_ID}
     rm ${EXTENSION_ID}.zip
   done
-  #sudo apt install -y gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted
+  sudo apt update
+  sudo apt install -y gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell
 fi

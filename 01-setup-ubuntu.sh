@@ -15,68 +15,24 @@ sudo apt update
 sudo apt upgrade -y
 
 #Install my prereqs
-sudo apt install -y apt-transport-https curl gdebi-core timeshift make git jq gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat
+sudo apt install -y apt-transport-https curl gdebi-core timeshift make git jq 
 
-#TODO Install Timeshift APT (ONLY IF ROOT IS BTRFS)
-if [ `stat --format=%i /` -eq 256 ];then
-  #stat -f --format=%T /path
-  if [ ! -d "${HOME}/git/public/timeshift-autosnap-apt" ]; then
-    git clone https://github.com/wmutschl/timeshift-autosnap-apt.git ${HOME}/git/public/timeshift-autosnap-apt
-    cd ${HOME}/git/public/timeshift-autosnap-apt
-    sudo make install
-  fi
-fi
-
-#Install Dropbox
-if [ ! -x "$(command -v dropbox)" ];then
-  #sudo apt-key export 5044912E | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/dropbox.gpg
-  wget https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb -O ${HOME}/Downloads/dropbox.deb
-  yes | sudo gdebi ${HOME}/Downloads/dropbox.deb
-fi
-
-#Install Discord
-if [ ! -x "$(command -v discord)" ];then
-  wget "https://discord.com/api/download?platform=linux&format=deb" -O ${HOME}/Downloads/discord.deb
-  yes | sudo gdebi ${HOME}/Downloads/discord*.deb
-fi
-
-#Install OBS Studio
-if [ ! -x "$(command -v obs)" ];then
-  sudo add-apt-repository -y ppa:obsproject/obs-studio
-  sudo apt install -y obs-studio
-fi
-
-#WebP Support
+#WebP Support for 22.04 only
 if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
   wget https://launchpad.net/ubuntu/+source/webp-pixbuf-loader/0.0.5-5/+build/24125572/+files/webp-pixbuf-loader_0.0.5-5_amd64.deb -O ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
   yes | sudo gdebi ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
 fi
 
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) apfs-dkms apfsprogs python-is-python3 mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat python3.10-venv deluge
+
+
 #Replace PulseAudio with PipeWire
+#This won't be necessary in versions after 22.04
 #sudo apt install -y pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack wireplumber libpipewire-0.3-dev
 #sudo apt remove -y pulseaudio-module-bluetooth
 #systemctl --user --now enable wireplumber.service
 
-echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) apfs-dkms apfsprogs python-is-python3 jq mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer
-
-#Install Spotify
-#if [ ! -f "/etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg" ]; then
-#  curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg
-#fi
-#if [ ! -f "/etc/apt/sources.list.d/spotify.list" ]; then
-#  echo "deb [signed-by=/etc/apt/trusted.gpg.d/repository-spotify-com-keyring.gpg arch=amd64] http://repository.spotify.com stable non-free"| sudo tee /etc/apt/sources.list.d/spotify.list
-#fi
-
-#Install Wine
-if [ ! -f "/etc/apt/trusted.gpg.d/repository-winehq-keyring.gpg" ]; then
-  sudo curl -fsSLo /usr/share/keyrings/winehq.key https://dl.winehq.org/wine-builds/winehq.key
-  curl -sS https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/repository-winehq-keyring.gpg
-  sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/' -y
-  sudo apt update
-  sudo apt install --install-recommends winehq-staging -y
-  sudo apt install winetricks -y
-fi
 
 #Remove Firefox snap
 #https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
@@ -126,3 +82,5 @@ fi
 if [ ! -d "${HOME}/git/public/lug-helper" ]; then
   git clone https://github.com/starcitizen-lug/lug-helper.git ${HOME}/git/public/lug-helper
 fi
+
+#https://towardsdatascience.com/installing-multiple-alternative-versions-of-python-on-ubuntu-20-04-237be5177474

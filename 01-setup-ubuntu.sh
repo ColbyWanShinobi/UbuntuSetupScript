@@ -27,6 +27,7 @@ echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select tr
 sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) apfs-dkms apfsprogs python-is-python3 mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat python3.10-venv deluge
 
 
+
 #Replace PulseAudio with PipeWire
 #This won't be necessary in versions after 22.04
 #sudo apt install -y pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack wireplumber libpipewire-0.3-dev

@@ -9,5 +9,6 @@ if [ ! -f "/etc/apt/trusted.gpg.d/repository-winehq-keyring.gpg" ]; then
   sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/' -y
 fi
 sudo apt update
-sudo apt install --install-recommends winehq-staging -y
+sudo dpkg --add-architecture i386
+sudo apt install --install-recommends winehq-stable -y
 sudo apt install winetricks -y

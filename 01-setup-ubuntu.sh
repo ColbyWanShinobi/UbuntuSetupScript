@@ -24,7 +24,7 @@ if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
 fi
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) apfs-dkms apfsprogs python-is-python3 mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat python3.10-venv deluge
+sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) apfs-dkms apfsprogs python-is-python3 python3-tk mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat python3.10-venv deluge
 
 
 

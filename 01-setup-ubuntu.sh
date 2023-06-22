@@ -10,6 +10,10 @@ mkdir -p ${HOME}/git/public
 #Move Show Apps Button
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 
+#ALways show thhumbnail previews in Nautilus
+dconf write /org/gnome/nautilus/preferences/show-image-thumbnails '"always"'
+
+
 #Initial update and upgrade
 sudo apt update
 sudo apt upgrade -y

@@ -11,4 +11,4 @@ fi
 sudo apt update
 sudo dpkg --add-architecture i386
 sudo apt install --install-recommends winehq-stable -y
-sudo apt install winetricks -y
+#sudo apt install winetricks -y

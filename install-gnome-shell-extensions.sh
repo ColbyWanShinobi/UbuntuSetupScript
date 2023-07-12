@@ -21,6 +21,11 @@ if [ ${XDG_CURRENT_DESKTOP} == "ubuntu:GNOME" ];then
   https://extensions.gnome.org/extension/4651/notification-banner-reloaded/
   https://extensions.gnome.org/extension/4548/tactile/
   https://extensions.gnome.org/extension/1162/emoji-selector/
+  https://extensions.gnome.org/extension/4862/bat_consumption_wattmeter/
+  https://extensions.gnome.org/extension/904/disconnect-wifi/
+  https://extensions.gnome.org/extension/750/openweather/
+  https://extensions.gnome.org/extension/1112/screenshot-tool/
+  https://extensions.gnome.org/extension/906/sound-output-device-chooser/
   )
 
   for i in "${array[@]}"

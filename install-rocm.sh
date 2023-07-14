@@ -6,7 +6,8 @@ set -e -x
 #https://gpuopen.com/learn/amd-lab-notes/amd-lab-notes-rocm-installation-readme/
 
 #Add AMDGPU Repo Key
-wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
+#wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
+sudo apt-key export 1A693C5C | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/amd-rocm.gpg
 
 #Add ROCm Stack Repo
 if [ ! -f "/etc/apt/sources.list.d/rocm.list" ]; then

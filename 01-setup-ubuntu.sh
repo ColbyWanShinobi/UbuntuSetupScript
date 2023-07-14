@@ -10,6 +10,9 @@ mkdir -p ${HOME}/git/public
 #Move Show Apps Button
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 
+#Use dark theme
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
 #ALways show thhumbnail previews in Nautilus
 dconf write /org/gnome/nautilus/preferences/show-image-thumbnails '"always"'
 
@@ -28,7 +31,7 @@ if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
 fi
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) python-is-python3 python3-tk mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat python3.10-venv deluge gnome-screenshot pavucontrol blueman
+sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) python-is-python3 python3-tk mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat python3.10-venv deluge gnome-screenshot pavucontrol blueman openssh-server
 
 
 

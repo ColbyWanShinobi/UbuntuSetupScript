@@ -23,8 +23,7 @@ sudo apt install -y linux-headers-`uname -r` linux-modules-extra-`uname -r` init
 sudo apt install -y rocm-hip-sdk${ROCM_VER} rocm-opencl-sdk${ROCM_VER} miopen-hip${ROCM_VER}
 
 #Update library env var
-echo "export LD_LIBRARY_PATH=/opt/rocm-${ROCM_VER}/lib:/opt/rocm-${ROCM_VER}/lib64" >> ~/.profile
-
+echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/rocm-${ROCM_VER}/lib:/opt/rocm-${ROCM_VER}/lib64" >> ~/.bashrc
 #Add the user to the "render" group
 sudo usermod -a -G render ${USER}
 

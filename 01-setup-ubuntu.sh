@@ -22,7 +22,7 @@ sudo apt update
 sudo apt upgrade -y
 
 #Install my prereqs
-sudo apt install -y apt-transport-https curl gdebi-core timeshift make git jq 
+sudo apt install -y apt-transport-https curl gdebi-core timeshift make git jq traceroute
 
 #WebP Support for 22.04 only
 if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then

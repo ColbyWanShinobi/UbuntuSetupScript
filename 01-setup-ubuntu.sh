@@ -13,9 +13,8 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 #Use dark theme
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-#ALways show thhumbnail previews in Nautilus
+#Always show thhumbnail previews in Nautilus
 dconf write /org/gnome/nautilus/preferences/show-image-thumbnails '"always"'
-
 
 #Initial update and upgrade
 sudo apt update
@@ -31,9 +30,12 @@ if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
 fi
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) python-is-python3 python3-tk mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat python3.10-venv deluge gnome-screenshot pavucontrol blueman openssh-server wakeonlan imagemagick nautilus-image-converter python3-gpg folder-color nautilus-admin nautilus-gtkhash python3-pip htop sshpass
-
-
+sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) python-is-python3 \
+  python3-tk mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks \
+  gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat \
+  python3.10-venv deluge gnome-screenshot pavucontrol blueman openssh-server wakeonlan \
+  imagemagick nautilus-image-converter python3-gpg folder-color nautilus-admin nautilus-gtkhash \
+  python3-pip htop sshpass
 
 #Replace PulseAudio with PipeWire
 #This won't be necessary in versions after 22.04
@@ -59,39 +61,6 @@ sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) pyth
 #  sudo apt update
 #fi
 
-#Download a bunch of git repos for later
-if [ ! -d "${HOME}/git/public/obs-gstreamer" ]; then
-  git clone https://github.com/fzwoch/obs-gstreamer.git ${HOME}/git/public/obs-gstreamer
-  #sudo cp ${HOME}/Downloads/obs-gstreamer/linux/obs-gstreamer.so /usr/lib/x86_64-linux-gnu/obs-plugins/
-  #sudo apt install cmake libobs-dev libvulkan-dev libgl-dev libx11-dev libxcb1-dev libwayland-client++0
-fi
-
-if [ ! -d "${HOME}/git/public/Complete-Single-GPU-Passthrough" ]; then
-  git clone https://github.com/QaidVoid/Complete-Single-GPU-Passthrough.git ${HOME}/git/public/Complete-Single-GPU-Passthrough
-fi
-
-if [ ! -d "${HOME}/git/public/OSX-KVM" ]; then
-  git clone https://github.com/kholia/OSX-KVM.git ${HOME}/git/public/OSX-KVM
-fi
-
-if [ ! -d "${HOME}/git/public/macOS-Simple-KVM" ]; then
-  git clone https://github.com/foxlet/macOS-Simple-KVM.git ${HOME}/git/public/macOS-Simple-KVM
-fi
-
-if [ ! -d "${HOME}/git/public/obs-pipewire-audio-capture" ]; then
-  #https://ubuntuhandbook.org/index.php/2022/04/pipewire-replace-pulseaudio-ubuntu-2204/
-  git clone https://github.com/dimtpap/obs-pipewire-audio-capture.git ${HOME}/git/public/obs-pipewire-audio-capture
-fi
-
-if [ ! -d "${HOME}/git/public/linux-apfs-rw" ]; then
-  git clone https://github.com/linux-apfs/linux-apfs-rw.git ${HOME}/git/public/linux-apfs-rw
-fi
-
-if [ ! -d "${HOME}/git/public/lug-helper" ]; then
-  git clone https://github.com/starcitizen-lug/lug-helper.git ${HOME}/git/public/lug-helper
-fi
-
 #https://towardsdatascience.com/installing-multiple-alternative-versions-of-python-on-ubuntu-20-04-237be5177474
-
 
 echo "export PATH=${PATH}:/home/colby/.local/bin" >> ~/.bashrc

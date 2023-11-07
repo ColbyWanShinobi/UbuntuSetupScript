@@ -11,7 +11,7 @@ mkdir -p ${HOME}/git/public
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 
 #Use dark theme
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+#gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 #Always show thhumbnail previews in Nautilus
 dconf write /org/gnome/nautilus/preferences/show-image-thumbnails '"always"'
@@ -24,17 +24,24 @@ sudo apt upgrade -y
 sudo apt install -y apt-transport-https curl gdebi-core timeshift make git jq traceroute
 
 #WebP Support for 22.04 only
-if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
-  wget https://launchpad.net/ubuntu/+source/webp-pixbuf-loader/0.0.5-5/+build/24125572/+files/webp-pixbuf-loader_0.0.5-5_amd64.deb -O ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
-  yes | sudo gdebi ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
-fi
+#if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
+#  wget https://launchpad.net/ubuntu/+source/webp-pixbuf-loader/0.0.5-5/+build/24125572/+files/#webp-pixbuf-loader_0.0.5-5_amd64.deb -O ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
+#  yes | sudo gdebi ${HOME}/Downloads/webp-pixbuf-loader_0.0.5-5_amd64.deb
+#fi
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) python-is-python3 \
-  python3-tk mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks \
-  gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat \
-  python3.10-venv deluge gnome-screenshot pavucontrol blueman openssh-server wakeonlan \
-  imagemagick nautilus-image-converter python3-gpg folder-color nautilus-admin nautilus-gtkhash \
+  python3-tk \
+  #mangohud \
+  ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks \
+  #gnome-shell-extension-manager \
+  chrome-gnome-shell gstreamer1.0-libav gparted qdirstat \
+#  python3.10-venv \
+  #deluge \
+  gnome-screenshot pavucontrol blueman openssh-server wakeonlan \
+  imagemagick nautilus-image-converter python3-gpg \
+  #folder-color \
+  nautilus-admin nautilus-gtkhash \
   python3-pip htop sshpass
 
 #Replace PulseAudio with PipeWire
@@ -63,4 +70,5 @@ sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) pyth
 
 #https://towardsdatascience.com/installing-multiple-alternative-versions-of-python-on-ubuntu-20-04-237be5177474
 
-echo "export PATH=${PATH}:/home/colby/.local/bin" >> ~/.bashrc
+
+

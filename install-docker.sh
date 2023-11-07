@@ -2,7 +2,7 @@
 
 set -e -x
 
-CODENAME=$(grep jammy /etc/lsb-release | cut -d= -f2)
+CODENAME=$(grep DISTRIB_CODENAME /etc/lsb-release | cut -d= -f2)
 
 sudo apt update
 sudo apt install -y ca-certificates curl gnupg

@@ -2,7 +2,7 @@
 
 set -e -x
 
-URL=http://mirrors.kernel.org/ubuntu/pool/universe/g/gamescope/gamescope_3.11.39-1_amd64.deb
+URL=http://mirrors.edge.kernel.org/ubuntu/pool/universe/g/gamescope/gamescope_3.11.49-1_amd64.deb
 URL2=http://mirrors.kernel.org/ubuntu/pool/universe/libl/libliftoff/libliftoff0_0.3.0-1_amd64.deb
 
 #Install Gamescope

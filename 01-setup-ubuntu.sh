@@ -35,7 +35,7 @@ sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) pyth
   gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat \
   python3.10-venv deluge gnome-screenshot pavucontrol blueman openssh-server wakeonlan \
   imagemagick nautilus-image-converter python3-gpg folder-color nautilus-admin nautilus-gtkhash \
-  python3-pip htop sshpass
+  python3-pip htop sshpass ca-certificates
 
 #Replace PulseAudio with PipeWire
 #This won't be necessary in versions after 22.04

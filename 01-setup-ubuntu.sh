@@ -30,12 +30,41 @@ if [[ $(apt search webp-pixbuf-loader | grep installed) != "installed" ]];then
 fi
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-sudo apt install -y vim build-essential conky-all linux-headers-$(uname -r) python-is-python3 \
-  python3-tk mangohud ubuntu-restricted-extras vlc ffmpegthumbnailer gnome-tweaks \
-  gnome-shell-extension-manager chrome-gnome-shell gstreamer1.0-libav gparted qdirstat \
-  python3.10-venv deluge gnome-screenshot pavucontrol blueman openssh-server wakeonlan \
-  imagemagick nautilus-image-converter python3-gpg folder-color nautilus-admin nautilus-gtkhash \
-  python3-pip htop sshpass ca-certificates
+
+sudo apt install -y \
+blueman \
+build-essential \
+ca-certificates \
+chrome-gnome-shell \
+conky-all \
+deluge \
+ffmpegthumbnailer \
+folder-color \
+gnome-screenshot \
+gnome-shell-extension-manager \
+gnome-tweaks \
+gparted \
+gstreamer1.0-libav \
+htop \
+imagemagick \
+linux-headers-$(uname -r) \
+mangohud \
+nautilus-admin \
+nautilus-gtkhash \
+nautilus-image-converter \
+openssh-server \
+pavucontrol \
+python-is-python3 \
+python3-gpg \
+python3-pip \
+python3-tk \
+python3.10-venv \
+qdirstat \
+sshpass \
+ubuntu-restricted-extras \
+vim \
+vlc \
+wakeonlan
 
 #Replace PulseAudio with PipeWire
 #This won't be necessary in versions after 22.04

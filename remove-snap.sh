@@ -5,7 +5,7 @@ set -e -x
 #Remove Firefox snap
 #https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
 
-#sudo snap remove firefox
+sudo snap remove firefox
 #if [[ ! -f "/etc/apt/preferences.d/mozilla-firefox" ]]; then
 #  echo '
 #    Package: *
@@ -19,7 +19,7 @@ if [[ ! -f "/etc/apt/preferences.d/nosnap.pref" ]]; then
     Package: snapd
     Pin: release a=*
     Pin-Priority: -10
-  ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+  ' | sudo tee /etc/apt/preferences.d/nosnap.pref
 fi
 
 #sudo add-apt-repository -y ppa:mozillateam/ppa

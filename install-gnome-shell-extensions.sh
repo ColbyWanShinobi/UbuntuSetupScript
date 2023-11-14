@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 
-set -e -x
-
-#Create local folders
-mkdir -p ${HOME}/bin
-mkdir -p ${HOME}/git/personal
-mkdir -p ${HOME}/git/public
+#set -e -x
 
 #
-if [ ${XDG_CURRENT_DESKTOP} == "ubuntu:GNOME" ];then
+if [[ ${XDG_CURRENT_DESKTOP} == "ubuntu:GNOME" || ${XDG_CURRENT_DESKTOP} == "Unity" ]];then
   #gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
   #gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
   #gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

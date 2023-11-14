@@ -3,9 +3,9 @@
 set -e -x
 
 #Create local folders
-mkdir -p ${HOME}/bin
-mkdir -p ${HOME}/git/personal
-mkdir -p ${HOME}/git/public
+mkdir -p ${HOME}/bin || true
+mkdir -p ${HOME}/git/personal || true
+mkdir -p ${HOME}/git/public || true
 
 #Move Show Apps Button
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
@@ -68,9 +68,9 @@ wakeonlan
 
 #Replace PulseAudio with PipeWire
 #This won't be necessary in versions after 22.04
-#sudo apt install -y pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack wireplumber libpipewire-0.3-dev
-#sudo apt remove -y pulseaudio-module-bluetooth
-#systemctl --user --now enable wireplumber.service
+sudo apt install -y pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack wireplumber libpipewire-0.3-dev
+sudo apt remove -y pulseaudio-module-bluetooth
+systemctl --user --now enable wireplumber.service
 
 
 #Remove Firefox snap
@@ -92,4 +92,4 @@ wakeonlan
 
 #https://towardsdatascience.com/installing-multiple-alternative-versions-of-python-on-ubuntu-20-04-237be5177474
 
-echo "export PATH=${PATH}:/home/colby/.local/bin" >> ~/.bashrc
+echo "export PATH=${PATH}:/home/${USER}/.local/bin:/home/${USER}/bin" >> ~/.bashrc

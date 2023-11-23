@@ -7,10 +7,10 @@ sudo apt install -y qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients br
 
 sudo systemctl enable --now libvirtd
 
-sudo virsh net-start default
-sudo virsh net-autostart default
+sudo virsh net-start default || true
+sudo virsh net-autostart default || true
 
-usermod -aG kvm,input,libvirt ${USER}
-newgrp kvm
-newgrp input
-newgrp libvirt
+sudo usermod -aG kvm,input,libvirt ${USER}
+newgrp kvm || true
+newgrp input || true
+newgrp libvirt || true

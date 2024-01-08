@@ -18,6 +18,7 @@ dconf write /org/gnome/nautilus/preferences/show-image-thumbnails '"always"'
 
 #Initial update and upgrade
 sudo apt update
+sudo apt purge -y unattended-upgrades
 sudo apt upgrade -y
 
 #Install my prereqs

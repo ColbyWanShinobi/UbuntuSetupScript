@@ -2,7 +2,7 @@
 
 set -e -x
 
-CODENAME=$(grep CODENAME /etc/lsb-release | cut -d'=' -f2)
+CODENAME=$(grep CODENAME /etc/os-release | cut -d'=' -f2)
 
 sudo rm -rfv /etc/apt/keyrings/docker.gpg /etc/apt/sources.list.d/docker.list | true
 

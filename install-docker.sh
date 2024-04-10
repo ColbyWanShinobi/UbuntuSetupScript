@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -e -x
+set -e
+#set -x
 
 CODENAME=$(grep CODENAME /etc/os-release | cut -d'=' -f2)
 

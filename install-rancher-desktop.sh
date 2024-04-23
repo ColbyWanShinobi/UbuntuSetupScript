@@ -22,15 +22,15 @@ done
 
 #Check for privileges to /dev/kvm
 if [ -r /dev/kvm ] && [ -w /dev/kvm ]; then
-    :
+  :
 else
-    sudo usermod -a -G kvm "$USER"
-    newgrp kvm
-    echo 'Insufficient privileges to /dev/kvm. You've been added to the kvm group'
+  sudo usermod -a -G kvm "$USER"
+  newgrp kvm
+  echo 'Insufficient privileges to /dev/kvm. You have been added to the kvm group'
 fi
 
 # Get the key ID of the last generated key
-gpg_key_id=$(gpg --list-secret-keys --with-colons ${USER}@$(hostname) | awk -F: '/sec:/ {print $5}')
+gpg_key_id=$(gpg --list-secret-keys --with-colons ${USER}@$(hostname) | grep -o -E '[0-9]{6,}' | head -1)
 
 # If there's no key, generate a new one
 if [ -z "$gpg_key_id" ]; then
@@ -55,24 +55,26 @@ Expire-Date: 0
 EOF
 
   # Get the key ID of the last generated key
-  gpg_key_id=$(gpg --list-secret-keys --with-colons ${USER}@$(hostname) | awk -F: '/uid:/ {print $5}')
+  gpg_key_id=$(gpg --list-secret-keys --with-colons ${USER}@$(hostname) | grep -o -E '[0-9]{6,}' | head -1)
 fi
 
 pass init ${gpg_key_id}
 
 sudo install -m 0755 -d /etc/apt/keyrings
 
+sudo rm -fv /etc/apt/keyrings/isv-rancher-stable-archive-keyring.gpg
+
 if [ ! -f "/etc/apt/keyrings/isv-rancher-stable-archive-keyring.gpg" ]; then
- curl -fsSL https://download.opensuse.org/repositories/isv:/Rancher:/stable/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/isv-rancher-stable-archive-keyring.gpg
- sudo chmod a+r /etc/apt/keyrings/isv-rancher-stable-archive-keyring.gpg
+  curl -s https://download.opensuse.org/repositories/isv:/Rancher:/stable/deb/Release.key | gpg --dearmor | sudo dd status=none of=/etc/apt/keyrings/isv-rancher-stable-archive-keyring.gpg
+  sudo chmod a+r /etc/apt/keyrings/isv-rancher-stable-archive-keyring.gpg
 fi
 
-CODENAME=$(grep CODENAME /etc/os-release | cut -d'=' -f2)
+sudo rm -fv /etc/apt/sources.list.d/isv-rancher-stable.list
+
+CODENAME=$(grep CODENAME /etc/os-release | cut -d'=' -f2 | head -1)
 if [ ! -f "/etc/apt/sources.list.d/isv-rancher-stable.list" ]; then
- echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.opensuse.org/repositories/isv:/Rancher:/stable/deb \
-  "${CODENAME}" stable" | \
-  sudo tee /etc/apt/sources.list.d/isv-rancher-stable.list > /dev/null
+  echo 'deb [signed-by=/etc/apt/keyrings/isv-rancher-stable-archive-keyring.gpg] https://download.opensuse.org/repositories/isv:/Rancher:/stable/deb/ ./' | sudo dd status=none of=/etc/apt/sources.list.d/isv-rancher-stable.list
 fi
 
+sudo apt update -y
 sudo apt install -y rancher-desktop

@@ -1,0 +1,6 @@
+org.mozilla.firefox
+com.spotify.Client
+com.dropbox.Client
+com.slack.Slack
+org.qbittorrent.qBittorrent
+com.valvesoftware.Steam

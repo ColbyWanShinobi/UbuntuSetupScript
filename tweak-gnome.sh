@@ -45,5 +45,8 @@ dconf write /org/gnome/shell/extensions/openweatherrefined/show-comment-in-panel
 dconf write /org/gnome/shell/extensions/notifications-alert/color '"rgb(51,209,122)"'
 
 gsettings set org.gnome.mutter experimental-features '["variable-refresh-rate"]'
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+
+dconf write /org/gnome/shell/extensions/dash-to-dock/dock-fixed true
 
 #gnome-shell --replace &

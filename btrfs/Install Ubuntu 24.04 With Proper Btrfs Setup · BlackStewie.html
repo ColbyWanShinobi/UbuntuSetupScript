@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/ -->
+<html lang="en" style="--wm-toolbar-height: 107px;"><script defer="" referrerpolicy="origin" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/s.js"></script><script id="youtube-hd-fjdmkanbdloodhegphphhklnjfngoffa">var ythdlog = () => {};;var ythderror = () => {};</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/athena.js" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app213.us.archive.org';v.server_ms=554;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/bundle-playback.js" charset="utf-8"></script>
+<script type="text/javascript" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/wombat.js" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/","20250421174534","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1745257534");
+</script>
+<link rel="stylesheet" type="text/css" href="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/banner-styles.css">
+<link rel="stylesheet" type="text/css" href="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/iconochive.css">
+<!-- End Wayback Rewrite JS Include -->
+
+    <title>
+  Install Ubuntu 24.04 With Proper Btrfs Setup ·
+  BlackStewie
+</title>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Michael Schaecher">
+<meta name="description" content="One of the best filesystems for Linux is btrfs. It is a modern copy-on-write (CoW) filesystem for Linux aimed at implementing advanced features while focusing on fault tolerance, repair, and easy administration. Btrfs is the default filesystem for Fedora, openSUSE, and SUSE Linux Enterprise. Ubuntu has also been using Btrfs as the default filesystem for the desktop version since 21.10. In this guide, we will install Ubuntu 24.04 with a proper Btrfs setup.">
+<meta name="keywords" content="blog, developer, personal">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/web/20250421174534im_/https://blackstewie.com/">
+
+<meta name="twitter:title" content="Install Ubuntu 24.04 With Proper Btrfs Setup">
+<meta name="twitter:description" content="One of the best filesystems for Linux is btrfs. It is a modern copy-on-write (CoW) filesystem for Linux aimed at implementing advanced features while focusing on fault tolerance, repair, and easy administration. Btrfs is the default filesystem for Fedora, openSUSE, and SUSE Linux Enterprise. Ubuntu has also been using Btrfs as the default filesystem for the desktop version since 21.10. In this guide, we will install Ubuntu 24.04 with a proper Btrfs setup.">
+
+<meta property="og:title" content="Install Ubuntu 24.04 With Proper Btrfs Setup">
+<meta property="og:description" content="One of the best filesystems for Linux is btrfs. It is a modern copy-on-write (CoW) filesystem for Linux aimed at implementing advanced features while focusing on fault tolerance, repair, and easy administration. Btrfs is the default filesystem for Fedora, openSUSE, and SUSE Linux Enterprise. Ubuntu has also been using Btrfs as the default filesystem for the desktop version since 21.10. In this guide, we will install Ubuntu 24.04 with a proper Btrfs setup.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/"><meta property="og:image" content="/web/20250421174534im_/https://blackstewie.com/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2024-04-28T07:10:16-06:00">
+<meta property="article:modified_time" content="2024-05-19T17:30:16-06:00">
+
+
+
+
+
+<link rel="canonical" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/">
+
+
+
+
+
+ <link rel="stylesheet" href="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/all.css"> 
+
+
+
+  
+  
+  <link rel="stylesheet" href="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/simple-dark.min.0590d2704971b2510c48f202d74fb42de4c92173eba18c7fded0d038d529ba0b.css" integrity="" crossorigin="anonymous" media="screen">
+
+
+
+ 
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://web.archive.org/web/20250421174534im_/https://blackstewie.com/images/favicon.ico" sizes="any">
+
+
+<link rel="icon" type="image/png" ref="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://web.archive.org/web/20250421174534im_/https://blackstewie.com/images/favicon-16x16.png" sizes="16x16">
+
+
+<link rel="apple-touch-icon" href="https://web.archive.org/web/20250421174534im_/https://blackstewie.com/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://web.archive.org/web/20250421174534im_/https://blackstewie.com/images/apple-touch-icon.png">
+
+
+<link rel="manifest" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/images/site.webmanifest">
+
+
+<link rel="mask-icon" href="https://web.archive.org/web/20250421174534im_/https://blackstewie.com/images/favicon.ico" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/katex.min.css" integrity="" crossorigin="anonymous">
+  
+  <script defer="" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/katex.min.js" integrity="" crossorigin="anonymous"></script>
+  <script defer="" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/auto-render.min.js" integrity="" crossorigin="anonymous" onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: &#39;$$&#39;, right: &#39;$$&#39;, display:true},
+          {left: &#39;$&#39;, right: &#39;$&#39;, display:false},
+          {left: &#39;\\(&#39;, right: &#39;\\)&#39;, display: false},
+          {left: &#39;\\[&#39;, right: &#39;\\]&#39;, display: true}
+        ]
+      }
+    );"></script>
+
+
+
+
+
+  <script data-cfasync="false" nonce="">try{(function(w,d){!function(j,k,l,m){if(j.zaraz)console.error("zaraz is loaded twice");else{j[l]=j[l]||{};j[l].executed=[];j.zaraz={deferred:[],listeners:[]};j.zaraz._v="5850";j.zaraz._n="7c04a463-3d67-4f2f-a420-0877b5c399f3";j.zaraz.q=[];j.zaraz._f=function(n){return async function(){var o=Array.prototype.slice.call(arguments);j.zaraz.q.push({m:n,a:o})}};for(const p of["track","set","debug"])j.zaraz[p]=j.zaraz._f(p);j.zaraz.init=()=>{var q=k.getElementsByTagName(m)[0],r=k.createElement(m),s=k.getElementsByTagName("title")[0];s&&(j[l].t=k.getElementsByTagName("title")[0].text);j[l].x=Math.random();j[l].w=j.screen.width;j[l].h=j.screen.height;j[l].j=j.innerHeight;j[l].e=j.innerWidth;j[l].l=j.location.href;j[l].r=k.referrer;j[l].k=j.screen.colorDepth;j[l].n=k.characterSet;j[l].o=(new Date).getTimezoneOffset();if(j.dataLayer)for(const t of Object.entries(Object.entries(dataLayer).reduce(((u,v)=>({...u[1],...v[1]})),{})))zaraz.set(t[0],t[1],{scope:"page"});j[l].q=[];for(;j.zaraz.q.length;){const w=j.zaraz.q.shift();j[l].q.push(w)}r.defer=!0;for(const x of[localStorage,sessionStorage])Object.keys(x||{}).filter((z=>z.startsWith("_zaraz_"))).forEach((y=>{try{j[l]["z_"+y.slice(7)]=JSON.parse(x.getItem(y))}catch{j[l]["z_"+y.slice(7)]=x.getItem(y)}}));r.referrerPolicy="origin";r.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(j[l])));q.parentNode.insertBefore(r,q)};["complete","interactive"].includes(k.readyState)?zaraz.init():j.addEventListener("DOMContentLoaded",zaraz.init)}}(w,d,"zarazData","script");window.zaraz._p=async bs=>new Promise((bt=>{if(bs){bs.e&&bs.e.forEach((bu=>{try{const bv=d.querySelector("script[nonce]"),bw=bv?.nonce||bv?.getAttribute("nonce"),bx=d.createElement("script");bw&&(bx.nonce=bw);bx.innerHTML=bu;bx.onload=()=>{d.head.removeChild(bx)};d.head.appendChild(bx)}catch(by){console.error(`Error executing script: ${bu}\n`,by)}}));Promise.allSettled((bs.f||[]).map((bz=>fetch(bz[0],bz[1]))))}bt()}));zaraz._p({"e":["(function(w,d){})(window,document)"]});})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script><script>var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+let window = _____WB$wombat$assign$function_____("window");
+let globalThis = _____WB$wombat$assign$function_____("globalThis");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+{
+(function(w,d){})(window,document)
+
+}}</script><script src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/embed.js" data-timestamp="1745257534061"></script></head>
+
+  <body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display: block; direction: ltr; height: 107px;" toolbar-mode="auto"><template shadowrootmode="closed"><div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;" class="">
+<div id="donato" style="position: relative; width: 100%; height: 40px;">
+  <div id="donato-base" style="height: 40px;">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20250421174534/https%3A//blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="https://web.archive.org/web/" title="Wayback Machine home page"><img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0"></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="https://web.archive.org/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" onfocus="this.focus();this.select();" style="flex:1;" autocomplete="off"><input type="hidden" name="type" value="replay"><input type="hidden" name="date" value="20250421174534"><input type="submit" value="Go">
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;"><a class="t" href="https://web.archive.org/web/*/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" title="See a list of every capture for this URL">12 captures</a><div class="r" title="Timespan for captures of this URL">30 May 2024 - 21 Apr 2025</div></div>
+        <div class="k">
+          <a href="https://web.archive.org/web/20180201000000/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="750" height="27" border="0"></canvas>
+            <div class="yt" style="display: none; width: 25px; height: 27px; left: 550px;"></div><div class="mt" style="display: none; width: 2px; height: 27px; left: 553px;"></div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20250124101409/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" title="24 Jan 2025"><strong>Jan</strong></a></td>
+            <td class="c" id="displayMonthEl" title="You are here: 17:45:34 Apr 21, 2025">Apr</td>
+            <td class="f" nowrap="nowrap">May</td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20250415051855/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" title="05:18:55 Apr 15, 2025"><img src="https://web-static.archive.org/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0"></a></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 17:45:34 Apr 21, 2025">21</td>
+            <td class="f" nowrap="nowrap"><img src="https://web-static.archive.org/_static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0"></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap">2024</td>
+            <td class="c" id="displayYearEl" title="You are here: 17:45:34 Apr 21, 2025">2025</td>
+            <td class="f" nowrap="nowrap">2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#" title="Share via My Web Archive" style="display: none;">
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in" style="display: inline-block;">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web" style="display: none;"></span>
+        </span>
+                <a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="https://web.archive.org/web/20250421174534/http://web.archive.org/screenshot/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" id="wm-screenshot" title="screenshot" style="visibility: hidden;">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#" data-url="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#" data-url="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#expand"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/save-page-now)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/save-page-now" target="_new"><span class="wm-title">Save Page Now</span></a></div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="https://web-static.archive.org/_static/images/loading.gif" alt="loading"></div>
+    </div>
+    </div>
+  </div></div></div><link rel="stylesheet" type="text/css" href="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/banner-styles.css"><link rel="stylesheet" type="text/css" href="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/iconochive.css"><div class="wb-autocomplete-suggestions " style="left: 135px; top: 8657px; width: 1491px;"></div></template>
+</div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(750,27,25,2,"web","https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/","20250421174534",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=1B2M2Y8A","https://web-static.archive.org/_static/css/iconochive.css?v=1B2M2Y8A"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
+    
+<header id="nav">
+  
+  <a class="nav-title" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/">
+    BlackStewie
+  </a>
+
+  
+  
+    <input type="checkbox" class="menu-list" id="menu-toggle" aria-label="menu">
+    <label class="menu-button float-right" for="menu-toggle">
+      <i class="fa fa-list fa-fw" aria-hidden="true"></i>
+    </label>
+
+    
+    <ul class="nav-list">
+      
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/">Posts</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/projects/">Projects</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/about/">About</a>
+          </li>
+        
+      
+    </ul>
+  
+  </header>
+
+
+    
+    <main id="wrapper" class="wrapper">
+  <section class="container post">
+    <article>
+      <header>
+        
+        
+          <img class="articleImage" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/3b5fa561-mascot-numbat@2x.png" alt="Featured image">
+        
+
+
+        
+        <div class="post-title">
+          <h1 class="blog-title">Install Ubuntu 24.04 With Proper Btrfs Setup</h1>
+        </div>
+
+        
+        <div class="post-meta">
+
+          
+          <div class="post-authors">
+            
+              <div class="tax">
+  
+  <i class="fa-regular fa-circle-user" aria-hidden="true"></i><ul class="taxes">
+    <li class="taxing">
+      <a class="taxlin" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/authors/michael-schaecher/">Michael Schaecher</a>
+    </li>
+  </ul></div>
+
+            
+          </div>
+
+          
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                <span>
+
+                  
+                  
+                    <time class="datetime" datetime="2024-05-19T17:30:16-06:00">
+                    Updated On: 
+                    May 19, 2024
+                    </time>
+                  
+
+                </span>
+              
+            </span>
+
+            
+            <span class="reading-time">
+              <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              <span>Reading Time: 12 Min</span>
+            </span>
+
+          </div>
+
+        </div>
+      </header>
+      <div class="toc">
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ol>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#getting-ubuntu-2404">Getting Ubuntu 24.04</a></li>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#booting-the-live-environment">Booting the Live Environment</a></li>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#basic-installation">Basic Installation</a>
+      <ol>
+        <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#language-accessibility-and-keyboard-layout">Language, Accessibility, and Keyboard Layout</a></li>
+        <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#network-connection">Network Connection</a></li>
+        <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#install-or-try-installation-type-and-third-party-software">Install or Try, Installation Type and Third-Party Software</a></li>
+        <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#drive-setup">Drive Setup</a></li>
+        <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#user-account-and-location">User Account and Location</a></li>
+        <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#installation">Installation</a></li>
+      </ol>
+    </li>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#btrfs-setup">BTRFS Setup</a></li>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#remount-and-chroot">Remount and Chroot</a></li>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#grub-boot-loader-and-fstab">Grub Boot Loader and fstab</a></li>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#post-installation">Post Installation</a></li>
+    <li><a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/posts/install-ubuntu-24.04-with-proper-btrfs-setup/#conclusion">Conclusion</a></li>
+  </ol>
+</nav>
+      </div>
+      <div class="the-end"><hr></div>
+      <p>One of the best filesystems for Linux is <strong>btrfs</strong>. It is a modern copy-on-write (CoW) filesystem for Linux aimed at implementing advanced features while focusing on fault tolerance, repair, and easy administration. Btrfs is the default filesystem for Fedora, openSUSE, and SUSE Linux Enterprise. Ubuntu has also been using Btrfs as the default filesystem for the desktop version since 21.10. In this guide, we will install Ubuntu 24.04 with a proper Btrfs setup.</p>
+<p>Because of the fact of that <strong>btrfs</strong> is a CoW filesystem it does require a bit more <strong>RAM</strong> than <strong>ext4</strong>. However, if system has 8GB or more RAM, it should be fine. If you have less than 8GB of RAM and a SSD that is 1TB or larger you want to consider using <strong>ext4</strong> instead of <strong>btrfs</strong>. This is because <strong>btrfs</strong> will use about 1GB of RAM for every 1TB of storage.</p>
+<h2 id="getting-ubuntu-2404">Getting Ubuntu 24.04</h2>
+<p>There are few official flavors of Ubuntu 24.04 available. You can download the one you prefer from the 
+
+  <a href="https://web.archive.org/web/20250421174534/https://ubuntu.com/download/flavours" title="" class="external-link" rel="noopener">
+    Ubuntu website
+    <i class="fa-solid fa-link"></i>
+  </a>
+
+ or the default Ubuntu 24.04 from the 
+
+  <a href="https://web.archive.org/web/20250421174534/https://ubuntu.com/download/desktop" title="" class="external-link" rel="noopener">
+    Ubuntu website
+    <i class="fa-solid fa-link"></i>
+  </a>
+
+.</p>
+<p>The best applications to use on <strong><em>Windows</em></strong>, <strong><em>MacOS</em></strong>, and <strong><em>Linux</em></strong> to create a bootable USB stick is 
+
+  <a href="https://web.archive.org/web/20250421174534/https://etcher.balena.io/#download-etcher" title="" class="external-link" rel="noopener">
+    Balena Etcher
+    <i class="fa-solid fa-link"></i>
+  </a>
+
+. What is good about <strong><em>Balena Etcher</em></strong> is that it only show the USB sticks that are available to write to. Keeping you from accidentally writing to the wrong device and overwriting your drive.</p>
+<p>If you like to live on the edge you can use the <strong><em>dd</em></strong> command to create a bootable USB stick.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dd <span class="k">if</span><span class="o">=</span>/path/to/ubuntu-24.04.iso <span class="nv">of</span><span class="o">=</span>/dev/sdX <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress <span class="nv">oflag</span><span class="o">=</span>sync
+</span></span></code></pre></div><p>Replace <strong><em>/path/to/ubuntu-24.04.iso</em></strong> with the path to the downloaded <strong><em>ubuntu-24.04.iso</em></strong> file and <strong><em>/dev/sdX</em></strong> with the device name of the USB stick. Make sure to use the correct device name for the USB stick as this command will overwrite the entire device. Just be careful, because you can easily overwrite your hard drive if you use the wrong device name.</p>
+<h2 id="booting-the-live-environment">Booting the Live Environment</h2>
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p></p><p>After creating the bootable USB stick, plug it into the computer and boot from it. You may need to change the boot order in the BIOS settings to boot from the USB stick. Once the computer has booted into the live environment, you can start the installation process by clicking on the <strong><em>Install Ubuntu</em></strong> icon on the desktop.</p>
+<p>The default option for the <strong><em>grub</em></strong> bootloader is ‘Try or Install Ubuntu’. You can select this option to try out Ubuntu 24.04 before installing it. If you are ready to install Ubuntu 24.04, click on the <strong><em>Install Ubuntu</em></strong> icon on the desktop.</p>
+<p></p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/grub.png" alt="Grub Boot Loader">
+    </div>
+  </div>
+
+
+<p>If you leave the <strong><em>grub</em></strong> boot loader alone it will boot into the live environment after 10 seconds. If you want to boot into the live environment immediately, you can press the <strong><em>Enter</em></strong> key.</p>
+<h2 id="basic-installation">Basic Installation</h2>
+<p>The installation process is pretty straightforward. You will be asked to select your language, keyboard layout, and timezone. You will also be asked to create a user account and set a password. You can choose to encrypt your home folder or not. You will also be asked to select the installation type. You can choose to install Ubuntu 24.04 alongside Windows, erase the disk and install Ubuntu 24.04, or do something else.</p>
+<h3 id="language-accessibility-and-keyboard-layout">Language, Accessibility, and Keyboard Layout</h3>
+<p>If the default option works for you then you can click on the <strong><em>Next</em></strong> button to continue. If you need to change the language, accessibility options, or keyboard layout, you can do so by clicking on the appropriate button.</p>
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>The default option is English, that is because 
+
+  <a href="https://web.archive.org/web/20250421174534/https://canonical.com/" title="" class="external-link" rel="noopener">
+    Cononical
+    <i class="fa-solid fa-link"></i>
+  </a>
+
+ is based in the UK and Ubuntu was first developed in South Africa. You can change the language to your preferred language. Click on the ‘Next’ button to continue.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/01-Language.png" alt="Installation Type">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p>The installer allows you to enable or change the accessibility options prior to installation. You can enable the screen reader, magnifier, or on-screen keyboard. Click on the ‘Next’ button to continue.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/02-Accessibility.png" alt="Accessibility">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>The keyboard layout should be set to what the installer detected. If it is not correct change it to the correct layout.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/03-Keyboard.png" alt="Keyboard Layout">
+    </div>
+  </div>
+
+
+<h3 id="network-connection">Network Connection</h3>
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p></p><p>If you are connected to the internet by way of an Ethernet cable, the installer will automatically connect to the internet. if no connection is detected you can connect to a wireless network if a wireless card is detected. Click on the ‘Next’ button to continue.</p>
+<p>You can also choose to not connect to the internet. This is useful if you are installing Ubuntu 24.04 on a computer that is not connected to the internet.</p>
+<p></p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/04-Network.png" alt="Network Connection">
+    </div>
+  </div>
+
+
+<p>Depending on if you are connected or not will determine if you can install updates and third-party software during the installation process. The default is to ‘Install Ubuntu.’ Which is what we want to do.</p>
+<h3 id="install-or-try-installation-type-and-third-party-software">Install or Try, Installation Type and Third-Party Software</h3>
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>I recommend that you do connect to a network that has internet access. This will allow you to install updates and third-party software during the installation process.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/05-InstallOrTry.png" alt="Install or Try Ubuntu">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p>Interactive installation is the default option. This is the option we want to choose. This will allow us to choose the installation type and other options. Automated installation is for unattended installations and is useful for system administrators deploying multiple systems</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/06-InstallationType.png" alt="Installation Type">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>Level the default selected, this is the normal applications that come with Ubuntu.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/07-Applications.png" alt="Default applications">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p></p><p>The default option is to ‘Install third-party software for graphics and Wi-Fi hardware, Flash, MP3, and other media.’ This is the option we want to choose. This will install the necessary drivers and codecs to play media files.</p>
+<p>We want to select both ‘Third-party software’ and ‘Media formats.’ This will install the necessary drivers and codecs to play media files.</p>
+<p></p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/08-ThirdPartySoftware.png" alt="Third-Party Software">
+    </div>
+  </div>
+
+
+<h3 id="drive-setup">Drive Setup</h3>
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>The default option is to ‘Erase disk and install Ubuntu’ not what we want to do: instead what we want is ‘Manual installation.’ This will allow us to set up the drive the way we want it. In this case, we want to set up the drive with <strong><em>btrfs</em></strong> as the filesystem with the following subvolumes:</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/09-DiskSetup.png" alt="Drive Setup">
+    </div>
+  </div>
+
+
+<p>With <strong><em>btrfs</em></strong> we can create subvolumes that will allow us to take snapshots of the system. This is useful if we need to roll back the system to a previous state. We can also create subvolumes for the <strong><em>home</em></strong>, <strong><em>tmp</em></strong>, <strong><em>var/cache</em></strong> and <strong><em>var/log</em></strong> directories. This will allow us to keep the system clean and organized.</p>
+<table>
+<thead>
+<tr>
+<th>Subvolume</th>
+<th style="text-align:left">Mount Point</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@</td>
+<td style="text-align:left">/</td>
+<td>Main root subvolume</td>
+</tr>
+<tr>
+<td>@home</td>
+<td style="text-align:left">/home</td>
+<td>Home directory with user data</td>
+</tr>
+<tr>
+<td>@cache</td>
+<td style="text-align:left">/var/cache</td>
+<td>Cache</td>
+</tr>
+<tr>
+<td>@log</td>
+<td style="text-align:left">/var/log</td>
+<td>Log</td>
+</tr>
+<tr>
+<td>@tmp</td>
+<td style="text-align:left">/var/tmp</td>
+<td>Temp</td>
+</tr>
+<tr>
+<td>@snapshots</td>
+<td style="text-align:left">/.snapshots</td>
+<td>Snapshots</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p></p><p>On the bottom left just above the ‘Back’ button select the device for the EFI System Partition for the boot loader installation. This should be the same device as the root partition. In this case, it is <strong><em>sda</em></strong>. As I’m using a virtual machine. If you are using a physical machine it maybe <strong><em>nvme0n1</em></strong> if the system has a NVMe drive.</p>
+<p>Either way I assume that you are installing on an <strong><em>SSD</em></strong> be it a <strong><em>SATA</em></strong> or <strong><em>NVMe</em></strong> drive.</p>
+<p></p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/10-BootloaderDevice.png" alt="Partitioning">
+    </div>
+  </div>
+
+
+<p>Since we are using <strong><em>btrfs</em></strong> as the filesystem a swapfile will not work, because <strong><em>btrfs</em></strong> snapshot do not play will with swapfiles. Instead, we will create a swap partition. The swap partition should be about 8GB or less, anything more just a waste of space. Not having a <strong><em>swap</em></strong> partition is not an option as the system will not hibernate without it, plus some applications require a <strong><em>swap</em></strong> partition.</p>
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p></p><p>In this case I’m setting up a 4GB <strong><em>swap</em></strong> partition. This is more than enough for my needs. If you are not doing any heavy video editing or running a database server you can get away with a 2GB <strong><em>swap</em></strong> partition mounted as a <strong>ZRAM</strong> device.</p>
+<blockquote>
+<p>NOTE: <strong>ZRAM</strong> users part of the <strong><em>RAM</em></strong> as a compressed block device. This, however disable <strong><em>hibernation</em></strong>.</p>
+</blockquote>
+<p></p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/11-SwapPartition.png" alt="Partitioning">
+    </div>
+  </div>
+
+
+<p>The root partition should be about 50GB or more. This will allow for the installation of applications and updates. The root partition should be mounted as <strong><em>/</em></strong>.</p>
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p>Normally you would create a separate <strong><em>home</em></strong> partition, but with <strong><em>btrfs</em></strong> this is not necessary so instead we will use the remaining space on the drive for the root partition.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/12-RootPartition.png" alt="Partitioning">
+    </div>
+  </div>
+
+
+<h3 id="user-account-and-location">User Account and Location</h3>
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>The default option is to ‘Require my password to log in.’ This is the option we want to choose. This will require a password to log in to the system.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/13-UserAccount.png" alt="User Account">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p>The default option is to ‘Set up this computer as a local server.’ This is the option we want to choose. This will set up the computer as a local server. Once you set the location and click on the ‘Next’ you see the time change to the correct time zone.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/14-Location.png" alt="Location">
+    </div>
+  </div>
+
+
+<h3 id="installation">Installation</h3>
+<p>The last step is to review the installation settings and click on the <strong><em>Install</em></strong> button to start the installation process. The installation process will take some time to complete. Once the installation is complete, you will be prompted to restart the computer. Click on the <strong><em>Restart Now</em></strong> button to restart the computer.</p>
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>The installer summary will show the installation settings. If everything looks good click on the ‘Install’ button to start the installation process.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/15-Summary.png" alt="Installation">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p>The installation process will take some time to complete. Once the installation is complete.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/16-Installation.png" alt="Installation">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>You will be prompted to restart the computer since this is the default option. However, we need to make some changes to the system before we can restart the computer, so click on the Continue Testing’ button.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/17-ContinueTesting.png" alt="Restart">
+    </div>
+  </div>
+
+
+<h2 id="btrfs-setup">BTRFS Setup</h2>
+<p>A brief summary of home <strong><em>btrfs</em></strong> subvolumes work. When you create a subvolume it is like creating a new directory. You can create a snapshot of the subvolume and it will be like creating a copy of the directory. You can also create a snapshot of the entire filesystem and it will be like creating a copy of the entire filesystem. This is useful if you need to roll back the system to a previous state.</p>
+<p>Umount everything with <code>sudo umount -a</code>. Then mount the root partition with <code>sudo mount /dev/&lt;sdaX|nvme0n1pX&gt; /mnt</code> and copy resolv.conf file <code>sudo cp -vf /etc/resolv.conf /mnt/etc/resolv.conf</code>. Then create the first subvolumes with the following command: <code>sudo btrfs su snapshot /mnt/@</code>. This will create a snapshot of the root partition thereby creating a root level subvolume.</p>
+<p>Remove the main installed contents.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo rm -rv /mnt/<span class="o">{</span>bin,bin*,boot,cdrom,etc,home,lib,lib*,media,mnt,opt,root,run,sbin,sbin*,snap,srv,sys,tmp,usr,var<span class="o">}</span>
+</span></span></code></pre></div><p>Now we can create the rest of the subvolumes with the following commands.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo btrfs su create /mnt/@<span class="o">{</span>home,cache,log,tmp,snapshots<span class="o">}</span>
+</span></span></code></pre></div><p>Copy the contents of the <code>/mnt/@/var/cache</code> to <code>/mnt/@cache</code> and <code>/mnt/@/var/log</code> to <code>/mnt/@log</code> as an archive to preserve the permissions and ownership.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo cp -av /mnt/@/var/cache/* /mnt/@cache <span class="o">&amp;&amp;</span> rm -rv /mnt/@/var/cache/* <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"No cache directory"</span>
+</span></span><span class="line"><span class="cl">sudo cp -av /mnt/@/var/log/* /mnt/@log <span class="o">&amp;&amp;</span> rm -rv /mnt/@/var/log/* <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"No log directory"</span>
+</span></span></code></pre></div><p>Unmount the root partition with <code>sudo umount /mnt</code>.</p>
+<h2 id="remount-and-chroot">Remount and Chroot</h2>
+<p>Once the subvolumes are created and the contents of the <strong><em>var/cache</em></strong> and <strong><em>var/log</em></strong> directories are copied to the <strong><em>cache</em></strong> and <strong><em>log</em></strong> subvolumes, you can remount the root partition and chroot into the system. Remember to mount according to the drive type and replace ‘X’ with the correct partition number.</p>
+<p>Mount the subvolumes as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mount -o <span class="nv">subvol</span><span class="o">=</span>@ /dev/&lt;sdaX<span class="p">|</span>nvme0n1pX&gt; /mnt
+</span></span><span class="line"><span class="cl">sudo mount -o <span class="nv">subvol</span><span class="o">=</span>@home /dev/&lt;sdaX<span class="p">|</span>nvme0n1pX&gt; /mnt/home
+</span></span><span class="line"><span class="cl">sudo mount -o <span class="nv">subvol</span><span class="o">=</span>@cache /dev/&lt;sdaX<span class="p">|</span>nvme0n1pX&gt; /mnt/var/cache
+</span></span><span class="line"><span class="cl">sudo mount -o <span class="nv">subvol</span><span class="o">=</span>@log /dev/&lt;sdaX<span class="p">|</span>nvme0n1pX&gt; /mnt/var/log
+</span></span><span class="line"><span class="cl">sudo mount -o <span class="nv">subvol</span><span class="o">=</span>@tmp /dev/&lt;sdaX<span class="p">|</span>nvme0n1pX&gt; /mnt/var/tmp
+</span></span><span class="line"><span class="cl">sudo mount -o <span class="nv">subvol</span><span class="o">=</span>@snapshots /dev/&lt;sdaX<span class="p">|</span>nvme0n1pX&gt; /mnt/.snapshots
+</span></span></code></pre></div><p>Lastly mount the EFI boot partition <code>sudo mount /dev/&lt;sdaY|nvme0n1pY&gt; /mnt/boot/efi</code> because we are going to need to rebuild the <strong><em>grub</em></strong> configuration file and update the <strong><em>fstab</em></strong> file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> d in dev proc sys run<span class="p">;</span> <span class="k">do</span> sudo mount --rbind /<span class="nv">$d</span> /mnt/<span class="nv">$d</span><span class="p">;</span> <span class="k">done</span>
+</span></span></code></pre></div><p>Chroot into the environment: <code>sudo chroot /mnt /bin/bash</code>.</p>
+<h2 id="grub-boot-loader-and-fstab">Grub Boot Loader and fstab</h2>
+<p>Because we are using subvolumes with <strong><em>btrfs</em></strong> we need to regenerate the <strong><em>grub</em></strong> configuration file and update the <strong><em>fstab</em></strong> file. First, regenerate the <strong><em>grub</em></strong> configuration file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo grub-mkconfig -o /boot/efi/EFI/ubuntu/grub.cfg
+</span></span><span class="line"><span class="cl">sudo update-grub
+</span></span></code></pre></div><p>Next, update the <strong><em>fstab</em></strong> file. Create a script to generate the <strong><em>fstab</em></strong> file <code>nano gen-fstab</code> and paste the following code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> subvol <span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> su in <span class="k">$(</span>btrfs su list / <span class="p">|</span> grep <span class="s1">'level 5'</span> <span class="p">|</span> awk <span class="s1">'{print $9}'</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="nb">test</span> <span class="s2">"</span><span class="nv">$su</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"@"</span> <span class="p">;</span> <span class="k">then</span> <span class="nv">mountAt</span><span class="o">=</span><span class="s2">"/"</span> <span class="p">;</span> <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="nb">test</span> <span class="s2">"</span><span class="nv">$su</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"@home"</span> <span class="p">;</span> <span class="k">then</span> <span class="nv">mountAt</span><span class="o">=</span><span class="s2">"/home"</span> <span class="p">;</span> <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="nb">test</span> <span class="s2">"</span><span class="nv">$su</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"@log"</span> <span class="p">;</span> <span class="k">then</span> <span class="nv">mountAt</span><span class="o">=</span><span class="s2">"/var/log"</span> <span class="p">;</span> <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="nb">test</span> <span class="s2">"</span><span class="nv">$su</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"@tmp"</span> <span class="p">;</span> <span class="k">then</span> <span class="nv">mountAt</span><span class="o">=</span><span class="s2">"/tmp"</span> <span class="p">;</span> <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="nb">test</span> <span class="s2">"</span><span class="nv">$su</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"@cache"</span> <span class="p">;</span> <span class="k">then</span> <span class="nv">mountAt</span><span class="o">=</span><span class="s2">"/var/cache"</span> <span class="p">;</span> <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="nb">test</span> <span class="s2">"</span><span class="nv">$su</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"@snapshots"</span> <span class="p">;</span> <span class="k">then</span> <span class="nv">mountAt</span><span class="o">=</span><span class="s2">"/.snapshots"</span> <span class="p">;</span> <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	    <span class="nb">echo</span> <span class="s2">"</span><span class="si">${</span><span class="nv">getRootFS</span><span class="si">}</span><span class="s2"> </span><span class="nv">$mountAt</span><span class="s2"> btrfs </span><span class="si">${</span><span class="nv">btrfsOptions</span><span class="si">}</span><span class="s2">,subvol=</span><span class="si">${</span><span class="nv">su</span><span class="si">}</span><span class="s2"> 0 0"</span>
+</span></span><span class="line"><span class="cl">	<span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">btrfsOptions</span><span class="o">=</span><span class="s2">"ssd,noatime,space_cache=v2,compress=lzo"</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">getBootFS</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cat /etc/fstab <span class="p">|</span> grep <span class="s2">"vfat"</span> <span class="p">|</span> awk <span class="s1">'{print $1}'</span><span class="k">)</span><span class="s2">"</span>
+</span></span><span class="line"><span class="cl"><span class="nv">getBootFS</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cat /etc/fstab <span class="p">|</span> grep <span class="s2">"btrfs"</span> <span class="p">|</span> awk <span class="s1">'{print $1}'</span><span class="k">)</span><span class="s2">"</span>
+</span></span><span class="line"><span class="cl"><span class="nv">getSwapFS</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cat /etc/fstab <span class="p">|</span> grep <span class="s2">"swap"</span> <span class="p">|</span> awk <span class="s1">'{print $1}'</span><span class="k">)</span><span class="s2">"</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat <span class="s">&lt;&lt;EOF &gt; /etc/fstab
+</span></span></span><span class="line"><span class="cl"><span class="s"># /etc/fstab: static file system information.
+</span></span></span><span class="line"><span class="cl"><span class="s">#
+</span></span></span><span class="line"><span class="cl"><span class="s"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s"># EFI boot partition
+</span></span></span><span class="line"><span class="cl"><span class="s">${getBootFS} /boot/efi vfat defaults 0 1
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s"># Mount btrfs subvolumes
+</span></span></span><span class="line"><span class="cl"><span class="s">$(subvol)
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s"># Swap
+</span></span></span><span class="line"><span class="cl"><span class="s">${getSwapFS} none swap defaults 0 0
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">0</span>
+</span></span></code></pre></div><p>Make the script executable and make a backup of the <strong><em>fstab</em></strong> file;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cp -v /etc/fstab /etc/fstab.bak
+</span></span><span class="line"><span class="cl">chmod +x /usr/local/bin/gen-fstab <span class="p">;</span> gen-fstab
+</span></span></code></pre></div><p>Open the <strong><em>fstab</em></strong> file and make sure that the <strong><em>fstab</em></strong> file is correct. If everything looks good, you can exit the chroot environment with <code>exit</code> and reboot the system. Press the <strong><em>Enter</em></strong> and remove the USB stick when prompted. Otherwise, make the necessary changes and reboot the system.</p>
+<h2 id="post-installation">Post Installation</h2>
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p>Once the system has rebooted you logged into your account. The first thing we see is the <strong><em>Welcome</em></strong> screen. Press the ‘Next’ button to continue.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/18-Welcome.png" alt="Post Installation">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>The <strong><em>Welcome</em></strong> screen will show you the latest news and updates. You can click on the <strong><em>Next</em></strong> button to continue. Select the ‘Skip for now’ button to skip the <strong><em>Ubuntu Pro</em></strong> subscription.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/19-UbuntuPro.png" alt="Welcome">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="rightNoHeader">
+    <div class="marginRight">
+      
+      
+      
+        <p></p><p>The default option is to ‘Yes, to send system information.’ This will allow <strong><em>Canonical</em></strong> to collect system information. If you do not want to send system information, you can select ‘No, don’t share system data.’</p>
+<p>This depends on what you want to do, for me I’m going to select ‘No, don’t share system data.’ Even though the telemetry data is more anonymous than what <strong><em>Microsoft</em></strong> collects. I just don’t like the idea of the default option being to send system information.</p>
+<p></p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/20-Telemetry.png" alt="Privacy">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="leftNoHeader">
+    <div class="marginLeft">
+      
+      
+      
+        <p>The last step is to click on the ‘Finish’ button to close the <strong><em>Welcome</em></strong> screen.</p>
+      
+    </div>
+    <div class="imageLeft">
+      <img src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/21-FinishSetup.png" alt="Privacy">
+    </div>
+  </div>
+
+
+<h2 id="conclusion">Conclusion</h2>
+<p>This installation guide goes behond the basic installation of Ubuntu 24.04 with <strong><em>btrfs</em></strong> as the filesystem. We created subvolumes for the <strong><em>home</em></strong>, <strong><em>tmp</em></strong>, <strong><em>var/cache</em></strong> and <strong><em>var/log</em></strong> directories. This will allow us to keep the system clean and organized. We also created a <strong><em>swap</em></strong> partition and updated the <strong><em>grub</em></strong> configuration file and <strong><em>fstab</em></strong> file. This will allow us to take snapshots of the system and roll back the system to a previous state if needed.</p>
+<p>I hope this guide helps you with the installation of Ubuntu 24.04 with a proper <strong><em>btrfs</em></strong> setup. If you have any questions or comments, please leave them in the comment section below.</p>
+
+      <div class="the-end"><hr></div>
+
+      
+      <div class="taxonomy-links">
+
+          
+        
+
+
+
+
+
+
+        
+          <div class="tax">
+  <i class="fa-regular fa-bookmark" aria-hidden="true"></i><ul class="taxes">
+    <li class="taxing">
+      <a class="taxlin" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/categories/linux/">Linux</a>
+    </li>
+  </ul></div>
+
+        
+        
+          <div class="tax">
+  <i class="fa-regular fa-tags" aria-hidden="true"></i><ul class="taxes">
+    <li class="taxing">
+      <a class="taxlin" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/tags/ubuntu/">Ubuntu</a>
+    </li>
+  </ul><ul class="taxes">
+    <li class="taxing">
+      <a class="taxlin" href="https://web.archive.org/web/20250421174534/https://blackstewie.com/tags/btrfs/">BTRFS</a>
+    </li>
+  </ul></div>
+
+        
+      </div>
+
+    
+     
+<div class="next-post">
+   
+  <button class="next" onclick="location.href=&#39;\/posts\/manage-btrfs-snapshots-on-ubuntu-the-proper-way\/&#39;" aria-label="next">
+    <i class="fa-solid fa-backward-fast" aria-hidden="true"></i>
+  </button>
+   
+  <button class="prev" onclick="location.href=&#39;\/posts\/installing-ubuntu-24.04-in-wsl-the-fun-way\/&#39;" aria-label="prev">
+    <i class="fa-solid fa-forward-fast" aria-hidden="true"></i>
+  </button>
+  
+</div>
+ 
+
+
+      <div class="comments">
+        <div id="disqus_thread"><iframe id="dsq-app917" name="dsq-app917" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 0px !important;" allow="autoplay &#39;self&#39;; fullscreen &#39;self&#39;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script>
+    
+
+    
+
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://web.archive.org/web/20250421174534/https://blackstewie-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+        
+        
+        
+        
+      </div>
+    </article>
+  </section>
+</main>
+
+    <footer class="main-footer"><p id="footer-text">
+  Copyright
+
+  <i class="fa-regular fa-copyright"></i>
+
+  
+  <span id="currentYear">2025</span>
+
+  
+  <noscript>2024</noscript>
+
+  
+   by Michael Schaecher 
+
+  
+  
+    under the
+    <a href="https://web.archive.org/web/20250421174534/https://blackstewie.com/license" rel="license">MIT 
+    </a>
+    license
+   ·
+
+  
+  Powered by
+  <a href="https://web.archive.org/web/20250421174534/https://gohugo.io/" rel="nofollow">Hugo</a>
+  +
+  <a href="https://web.archive.org/web/20250421174534/https://github.com/MichaelSchaecher/simple-dark" rel="nofollow">Simple Dark</a>
+  </p>
+
+
+<script>document.getElementById("currentYear").innerHTML = new Date().getFullYear();</script>
+</footer>
+  <script defer="" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="" data-cf-beacon="{&quot;rayId&quot;:&quot;933eb2293e46eb32&quot;,&quot;version&quot;:&quot;2025.4.0-1-g37f21b1&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;16030c8983134f27ac226bcd66d6b77d&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}}}" crossorigin="anonymous"></script>
+
+
+
+<iframe style="display: none;" allow="autoplay &#39;self&#39;; fullscreen &#39;self&#39;" src="./Install Ubuntu 24.04 With Proper Btrfs Setup · BlackStewie_files/saved_resource(1).html"></iframe></body></html>

@@ -3,7 +3,7 @@
 set -e -x
 
 sudo apt update
-sudo apt install -y qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf
+sudo apt install -y qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf virtiofsd
 
 sudo systemctl enable --now libvirtd
 

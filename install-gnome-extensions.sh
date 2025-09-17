@@ -28,7 +28,6 @@ if [[ ${XDG_CURRENT_DESKTOP} != "ubuntu:GNOME" && ${XDG_CURRENT_DESKTOP} != "Uni
 fi
 
 extlist=(
-"https://extensions.gnome.org/extension/1112/screenshot-tool/"
 "https://extensions.gnome.org/extension/1125/github-notifications/"
 "https://extensions.gnome.org/extension/1183/utcclock/"
 "https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/"
@@ -48,7 +47,6 @@ extlist=(
 "https://extensions.gnome.org/extension/4228/wireless-hid/"
 "https://extensions.gnome.org/extension/4548/tactile/"
 "https://extensions.gnome.org/extension/5362/wireguard-vpn-extension/"
-"https://extensions.gnome.org/extension/5575/power-profile-switcher/"
 "https://extensions.gnome.org/extension/5964/quick-settings-audio-devices-hider/"
 "https://extensions.gnome.org/extension/6000/quick-settings-audio-devices-renamer/"
 #"https://extensions.gnome.org/extension/615/appindicator-support/"

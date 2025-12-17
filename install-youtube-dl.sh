@@ -4,7 +4,8 @@ set -e -x
 
 #Install YouTube Download
 if [ ! -x "$(command -v yt-dlp)" ];then
-  sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
-  sudo chmod a+rx /usr/local/bin/yt-dlp  # Make executable
+  mkdir -p ${HOME}/.local/bin
+  wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O ${HOME}/.local/bin/yt-dlp
+  chmod a+rx ${HOME}/.local/bin/yt-dlp  # Make executable
 fi
 sudo apt install -y ffmpeg
